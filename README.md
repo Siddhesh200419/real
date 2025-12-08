@@ -1,4 +1,3 @@
-Say less bro — here’s the **exact `.md` version**, ready to paste directly into your `README.md` with perfect Markdown formatting.
 
 ---
 
@@ -215,3 +214,4 @@ This project demonstrates:
 ```
 
 ---
+
