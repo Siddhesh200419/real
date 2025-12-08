@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Retail Sales Management System Backend",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/download_db.js && node --max-old-space-size=8192 src/index.js",
+    "dev": "node scripts/download_db.js && node --max-old-space-size=8192 --watch src/index.js",
+    "import": "node scripts/import_to_sqlite.js",
+    "migrate": "node scripts/migrate_add_missing_columns.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.5.0",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
