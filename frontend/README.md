@@ -1,72 +1,54 @@
-# Frontend - Retail Sales Management System
+# Retail Sales Frontend
 
-## Overview
-React-based frontend application for the Retail Sales Management System built with Vite.
+This is the user interface for the Retail Sales Management System. It's a single-page application built with **React 19** and **Vite**, designed to be snappy and responsive.
 
-## Tech Stack
-- React 19
-- Vite
-- Axios
+## What it does
 
-## Setup Instructions
+We built this dashboard to help users explore sales data easily. Instead of just extensive tables, we focused on making the data *accessible* through powerful filtering and search.
 
-1. Install dependencies:
+- **Fast Search:** You can type a customer's name or number, and we'll find it instantly. We use "debouncing" (a 300ms delay) so we don't spam the API while you type.
+- **Smart Filtering:** You don't have to guess what regions or options are available. The app asks the backend for the list of available filters (like Regions, Tags, Categories) and shows them to you dynamically.
+- **Responsive Tables:** We handle large numbers of records by only asking for one page of data at a time (Pagination).
+
+## Getting Started
+
+### 1. Prerequisites
+Make sure your backend is running first! 
+The frontend expects the API to be alive at `http://localhost:5000`.
+
+### 2. Install Dependencies
+Go into the frontend folder and grab the packages:
+
 ```bash
+cd frontend
 npm install
 ```
 
-2. Make sure the backend server is running on `http://localhost:5000`
+### 3. Run Locally
 
-3. Start the development server:
+To start the development server:
+
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The app will usually open at **[http://localhost:5173](http://localhost:5173)**.
 
-## Features
+## Project Layout
 
-### Search
-- Full-text search across Customer Name and Phone Number
-- Case-insensitive search
-- Real-time search with debouncing
+We kept the React structure clean and functional:
 
-### Filters
-- Multi-select filters for:
-  - Customer Region
-  - Gender
-  - Product Category
-  - Tags
-  - Payment Method
-- Range filters for:
-  - Age (Min/Max)
-  - Date Range (Date Picker & Presets)
+- `src/main.jsx`: The entry point.
+- `src/App.jsx`: The main controller. It holds the state for search, filters, and pagination.
+- `src/components/`:
+    - `FilterBar.jsx`: The top bar where you select regions, dates, etc.
+    - `TransactionTable.jsx`: The grid that displays the data.
+    - `Pagination.jsx`: The page switcher at the bottom.
+- `src/services/api.js`: The layer that talks to the backend (Axios calls).
 
-### Sorting
-- Sort by Date (Newest/Oldest First)
-- Sort by Quantity (Ascending/Descending)
-- Sort by Customer Name (A-Z / Z-A)
-- Sort by Total Amount
-
-### Pagination
-- 10 items per page
-- Previous/Next navigation
-- Page indicator showing current page and total pages
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── SearchBar.jsx
-│   ├── FilterPanel.jsx
-│   ├── TransactionTable.jsx
-│   ├── SortDropdown.jsx
-│   └── Pagination.jsx
-├── services/
-│   └── api.js
-├── App.jsx
-├── App.css
-├── main.jsx
-└── index.css
-```
+## Tech Stack Note
+We kept dependencies minimal:
+- **React 19**: For the UI library.
+- **Vite**: For super-fast build and hot reloading.
+- **Axios**: To handle HTTP requests cleanly.
+- **Vanilla CSS**: We used standard CSS modules for styling to keep things simple and predictable without needing a heavy framework like Tailwind for this specific scope.
