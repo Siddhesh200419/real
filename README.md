@@ -1,6 +1,6 @@
 # Retail Sales Management System
 
-Hi there! 👋 Welcome to the Retail Sales Management System. 
+Hi there! Welcome to the Retail Sales Management System. 
 
 This project is a full-stack dashboard designed to handle large datasets of retail transactions. It allows you to search, filter, and analyze sales data in real-time, all without needing a heavy database setup.
 
@@ -46,3 +46,4 @@ We wanted a system that is easy to deploy but scalable enough to handle real-wor
 - **Validation** is handled strictly on the backend to keep data clean.
 
 For deep dives, check out the [Architecture Docs](docs/architecture.md).
+
