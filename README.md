@@ -1,217 +1,48 @@
-
----
-
-````md
 # Retail Sales Management System
 
-## Overview
-A full-stack Retail Sales Management System featuring advanced **search**, **multi-filtering**, **sorting**, and **pagination** over a large real-world sales dataset.  
-The project follows a clean, modular architecture with a clear separation between **frontend**, **backend**, and **data services**.
+Hi there! 👋 Welcome to the Retail Sales Management System. 
 
----
+This project is a full-stack dashboard designed to handle large datasets of retail transactions. It allows you to search, filter, and analyze sales data in real-time, all without needing a heavy database setup.
 
-## Tech Stack
+## What's Inside?
 
-### **Backend**
-- Node.js  
-- Express.js  
-- SQLite (better-sqlite3)  
-- csv-parser  
+We split the project into two main parts to keep things clean:
 
-### **Frontend**
-- React 19  
-- Vite  
-- Axios  
+- **[Backend](/backend)**: A Node.js + Express server.  
+  It powers the API and uses a local SQLite database to handle millions of records efficiently. We chose SQLite so you can run this locally without setting up Postgres or MySQL.
 
----
+- **[Frontend](/frontend)**: A React + Vite application.  
+  It's the interface you see above. It features debounced search, dynamic multi-filtering (Regions, Categories, etc.), and smooth pagination.
 
-## Features
+## Quick Start
 
-### 🔍 **Search**
-- Case-insensitive full-text search  
-- Searches across **Customer Name** and **Phone Number**  
-- **Debounced input (300ms)** to reduce API calls  
-- Works smoothly with filters, sorting, and pagination  
+You can run the whole stack in two terminal windows.
 
-### 🎛️ **Filters**
-Supports dynamic multi-select and range-based filtering:
-
-- Customer Region  
-- Gender  
-- Age Range (min/max)  
-- Product Category  
-- Tags (parses comma-separated values)  
-- Payment Method  
-- Date Range (custom + presets like Today, Last 7 Days, etc.)
-
-Filters can be applied independently or in combination.
-
-### ↕️ **Sorting**
-Sorting is available for:  
-- Date  
-- Quantity  
-- Customer Name  
-- Total Amount  
-
-### 📄 **Pagination**
-- Default: 10 items per page  
-- Uses optimized SQLite `LIMIT` + `OFFSET`  
-- Works seamlessly with search & filters  
-
----
-
-## Setup Instructions
-
-### **Prerequisites**
-- Node.js (v16+)
-- npm
-
----
-
-## Backend Setup
+### 1. Start the Backend
+The backend handles the data. You need to verify your `.env` file first (check `backend/README.md` for details), then run:
 
 ```bash
 cd backend
-````
-
-### 1. Create `.env`
-
-```
-CSV_URL=your s3 bucket dataset url
-SQLITE_DB_URL=your s3 deploy db url
-```
-
-### 2. Install dependencies
-
-```bash
 npm install
-```
-
-### 3. Import data into SQLite
-
-```bash
-npm run import
-```
-
-### 4. Start server
-
-```bash
+npm run import  # Only needed the first time to load data
 npm start
 ```
+*It runs on port 5000.*
 
-Backend runs at:
-👉 **[http://localhost:5000](http://localhost:5000)**
-
----
-
-## Frontend Setup
+### 2. Start the Frontend
+Open a new terminal for the UI:
 
 ```bash
 cd frontend
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Run dev server:
-
-```bash
 npm run dev
 ```
+*It runs on port 5173.*
 
-Frontend runs at:
-👉 **[http://localhost:5173](http://localhost:5173)**
+## Why this architecture?
+We wanted a system that is easy to deploy but scalable enough to handle real-world data loads. 
+- **SQLite** gave us the performance of a SQL engine without the ops overhead.
+- **React + Vite** gave us a fast, modern development experience.
+- **Validation** is handled strictly on the backend to keep data clean.
 
----
-
-## Project Structure
-
-```
-root/
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   │   └── salesController.js
-│   │   ├── services/
-│   │   │   └── sqliteService.js
-│   │   ├── routes/
-│   │   │   └── salesRoutes.js
-│   │   └── index.js
-│   ├── scripts/
-│   │   └── import_to_sqlite.js
-│   └── package.json
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── FilterBar.jsx
-│   │   │   ├── TransactionTable.jsx
-│   │   │   └── ...
-│   │   └── App.jsx
-│   └── package.json
-└── README.md
-```
-
----
-
-## Deployment & Dataset Handling Notes
-
-The provided CSV (`truestate_assignment_dataset.csv`) is large.
-I explored multiple cloud deployment approaches:
-
-### **1. Supabase (initial attempt)**
-
-* Easy integration
-* Failed due to upload size limits + timeouts
-
-### **2. AWS S3 → RDS PostgreSQL Pipeline**
-
-Evaluated a full ingestion pipeline using:
-
-* S3 for storage
-* EC2 for transformation
-* `psql \copy` for bulk load into PostgreSQL
-
-This is scalable and production-friendly.
-The backend architecture (service/controller split) is already prepared for a smooth switch to PostgreSQL.
-
-### **Why the CSV-based backend was kept for submission**
-
-Due to limited time, I focused on:
-
-* Correct implementation of all required features
-* Clean architecture
-* Stable local execution
-* Avoiding a rushed, incomplete cloud setup
-
-The app is fully working locally end-to-end.
-
-### **With more time**
-
-I would:
-
-* Finish the RDS ingestion pipeline
-* Deploy a PostgreSQL-backed API
-* Keep the same frontend (API contract already matches)
-
----
-
-## Final Notes
-
-This project demonstrates:
-
-* Solid engineering structure
-* All required features working smoothly
-* Scalable architecture ready for database migration
-
----
-
-## Screenshot
-
-<img width="1917" height="925" src="https://github.com/user-attachments/assets/ae63a059-575b-46f0-acc8-816357998274" />
-```
-
----
-
+For deep dives, check out the [Architecture Docs](docs/architecture.md).
