@@ -28,7 +28,8 @@ npm install
 Create a `.env` file in the `backend` root. You just need to point it to the CSV dataset URL:
 
 ```
-CSV_URL=https://truestate-csv-siddhesh-prod.s3.ap-south-1.amazonaws.com/truestate_assignment_dataset.csv
+CSV_URL=your aws s3 bucket link (actual dataset)
+SQLITE_DB_URL=your aws s3 bucket link (data.db)
 ```
 
 ### 3. Load the Data
